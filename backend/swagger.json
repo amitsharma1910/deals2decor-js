@@ -1,0 +1,280 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
+        "version": "1.0.0",
+        "title": "deals2decor API",
+        "contact": {
+            "email": "amit@infointensify.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "paths" : {
+        "/users" : {
+            "get" : {
+                "summary" : "Get all the Users",
+                "description": "Get all the users",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "Save the User",
+                "description": "Save the user",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/User"
+                        } 
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}" : {
+            "get" : {
+                "summary" : "Get User by id",
+                "description": "Get User by id",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "user id that needs to be deleted",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "summary" : "Update the User",
+                "description": "Update the User",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/User"
+                        } 
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "Save the User",
+                "description": "Save the user",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+        
+    }, 
+    "definitions": {
+        "UserResponse": {
+            "type": "object",
+            "properties": {
+                "user_name": {
+                    "type":"string"
+                },
+                "password": {
+                    "type":"string"
+               
+                },
+                "login_with_gmail": {
+                    "type": "boolean"
+                },
+                "login_with_facebook": {
+                    "type": "boolean"
+                },
+                "email": {
+                    "type":"string"
+                    
+                },
+                "phone_no": {
+                    "type":"string"
+                },
+                "artist": {
+                    "type":"boolean"
+                },
+                "status": {
+                    "type":"integer"
+                },
+                "activationcode": {
+                    "type":"string"
+                },
+                "createdAt": {
+                    "type":"string"
+                },
+                "updatedAt": {
+                    "type":"string"
+                },
+                "activated_on": {
+                    "type":"string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type":"integer"
+                },
+                "user_name": {
+                    "type":"string"
+                },
+                "password": {
+                    "type":"string"
+               
+                },
+                "login_with_gmail": {
+                    "type": "boolean"
+                },
+                "login_with_facebook": {
+                    "type": "boolean"
+                },
+                "email": {
+                    "type":"string"
+                    
+                },
+                "phone_no": {
+                    "type":"string"
+                },
+                "artist": {
+                    "type":"boolean"
+                },
+                "status": {
+                    "type":"integer"
+                },
+                "activationcode": {
+                    "type":"string"
+                },
+                "createdAt": {
+                    "type":"string"
+                },
+                "updatedAt": {
+                    "type":"string"
+                },
+                "activated_on": {
+                    "type":"string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
