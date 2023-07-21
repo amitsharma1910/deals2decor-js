@@ -53,7 +53,7 @@
                         "required": true,
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/UserResponse"
                         } 
                     }
                 ]
@@ -62,7 +62,7 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/UserResponse"
                         }
                     },
                     "400": {
@@ -82,7 +82,7 @@
                 "parameters": [{
                     "name": "id",
                     "in": "path",
-                    "description": "user id that needs to be deleted",
+                    "description": "user id that needs to be fetched",
                     "required": true,
                     "type": "string"
                 }],
@@ -110,7 +110,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "user id that needs to be deleted",
+                        "description": "user id that needs to be updated",
                         "required": true,
                         "type": "string"
                     },
@@ -130,7 +130,7 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/UserResponse"
                         }
                     },
                     "400": {
@@ -171,54 +171,168 @@
                     }
                 }
             }
+        },
+        "/category":{
+            "get":{
+                "summary" : "Get all the categories",
+                "description": "Get all the categories",
+                "produces": ["application/json"],
+                "parameters": [], 
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CategoryResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "Save the category",
+                "description": "Save the category",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Category object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/CategoryResponse"
+                        } 
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CategoryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+            
+        },
+        "/category/{id}":{
+            "get" : {
+                "summary" : "Get category by id",
+                "description": "Get category by id",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "category id that needs to be fetch",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CategoryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "summary" : "Update the category",
+                "description": "Update the category",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "category id that needs to be updated",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Category object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/CategoryResponse"
+                        } 
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CategoryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "Delete the Category",
+                "description": "Delete the Category",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+                ,
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/CategoryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
         }
         
     }, 
     "definitions": {
         "UserResponse": {
-            "type": "object",
-            "properties": {
-                "user_name": {
-                    "type":"string"
-                },
-                "password": {
-                    "type":"string"
-               
-                },
-                "login_with_gmail": {
-                    "type": "boolean"
-                },
-                "login_with_facebook": {
-                    "type": "boolean"
-                },
-                "email": {
-                    "type":"string"
-                    
-                },
-                "phone_no": {
-                    "type":"string"
-                },
-                "artist": {
-                    "type":"boolean"
-                },
-                "status": {
-                    "type":"integer"
-                },
-                "activationcode": {
-                    "type":"string"
-                },
-                "createdAt": {
-                    "type":"string"
-                },
-                "updatedAt": {
-                    "type":"string"
-                },
-                "activated_on": {
-                    "type":"string"
-                }
-            }
-        },
-        "User": {
             "type": "object",
             "properties": {
                 "id": {
@@ -260,6 +374,30 @@
                     "type":"string"
                 },
                 "activated_on": {
+                    "type":"string"
+                }
+            }
+        },
+        
+        "CategoryResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type":"integer"
+                },
+                "name": {
+                    "type":"string"
+                },
+                "description": {
+                    "type":"string"
+                },
+                "active": {
+                    "type":"string"
+                },
+                "createdAt": {
+                    "type":"string"
+                },
+                "updatedAt": {
                     "type":"string"
                 }
             }

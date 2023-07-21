@@ -1,5 +1,6 @@
 const express = require('express');
-const apiRoutes = require('./routes/routes');
+const userRoutes = require('./routes/user.routes');
+const categoryRoutes = require('./routes/category.routes');
 const {sequelize,connectToDb} = require('./config/db.config');
 const body_parser = require('body-parser');
 
@@ -9,7 +10,8 @@ const PORT = 3000;
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 app.use(express.json());
-app.use('/api',apiRoutes);
+app.use('/api/users',userRoutes);
+app.use('/api/category',categoryRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, null));
 
 
